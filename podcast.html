@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+  <meta name="description" content="Pixel Pedagogy accompagne les professionnel·les de l’enseignement et de la formation avec des solutions pédagogiques innovantes, créatives et humaines.">
+  <meta name="keywords" content="Pixel Pedagogy, formation, pédagogie, éducation, podcast, créativité, accompagnement">
+  <meta name="author" content="Pixel Pedagogy">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pixel Pedagogy – Apprendre par l’expérience">
+  <meta property="og:description" content="Accompagnement pédagogique, podcasts inspirants, formations créatives : découvrez l’univers de Pixel Pedagogy.">
+  <meta property="og:url" content="https://www.pixelpedagogy.fr/">
+  <meta property="og:image" content="https://www.pixelpedagogy.fr/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pixel Pedagogy – Apprendre par l’expérience">
+  <meta name="twitter:description" content="Accompagnement pédagogique, podcasts inspirants, formations créatives : découvrez l’univers de Pixel Pedagogy.">
+  <meta name="twitter:image" content="https://www.pixelpedagogy.fr/img/og-image.jpg">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/b77151b1da.js" crossorigin="anonymous"></script>
+  <meta name="robots" content="index, follow">
+  <title>Podcast - Pixel Pedagogy</title>
+</head>
+<body>
+    <header>
+        <div class="header-logo">
+          <picture>
+            <a href="index.html">
+              <img src="img/logo.avif" alt="Logo de Pixel Pedagogy">
+          </a>
+          </picture>
+        </div>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="podcast.html">Podcast</a></li>  
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="a-propos.html">A Propos</a></li>
+          </ul>
+          <div class="burger" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
+    </header>
+
+    <main> 
+      <section class="podcast-ground">
+        <h2>Un métier, une explication !</h2>     
+          <section id="podcast-list"></section>
+      </section>          
+    </main>
+      
+      <footer class="site_footer">
+        <div class="footer_content">
+          <div class="footer_logo">
+            <h3>Pixel Pedagogy</h3>
+            <p>2025 – Tous droits réservés</p>
+            <p>&copy; Powered by Delphes</p>
+          </div>
+      
+          <div class="footer_links">
+            <a href="index.html">Accueil</a>
+            <a href="podcast.html">Podcast</a>
+            <a href="contact.html">Contact</a>
+            <a href="a-propos.html">A Propos</a>
+            <a href="mentions.html">Mentions Légales</a>
+          </div>
+      
+          <div class="footer_socials">
+            <a href="https://www.linkedin.com/in/christina-pixel" target="_blank">
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+      </footer>
+      
+      <script src="burger.js"></script>
+      <a href="#" class="back-to-top" id="backToTop" title="Retour en haut">
+          <i class="fa-solid fa-arrow-up"></i>
+      </a>    
+      <script src="backtotop.js"></script>
+      <script>
+        const podcasts = [
+          {
+            title: "Podcast du 3 novembre 2024 : Qu'est-ce qu'une commissionnaire de transport ?",
+            src: "audio/commissionnaire-de-transport.mp3",
+            credit: "Jingle de Hicham Chahidi (musicscreen.be)"
+          },
+          {
+            title: "Podcast du 8 décembre 2024 : Qu'est-ce qu'une manageuse de transition ?",
+            src: "audio/Manageuse-de-transition.mp3",
+            credit: "Jingle de Hicham Chahidi (musicscreen.be)"
+          },
+          // Ajoute d'autres podcasts ici
+        ];
+      
+        const container = document.getElementById('podcast-list');
+      
+        podcasts.forEach((podcast, index) => {
+          const playerId = `audio-${index}`;
+          const html = `
+            <div class="custom-player">
+              <div class="player-info">
+                <h4>${podcast.title}</h4>
+                <span id="current-${index}">0:00</span> / <span id="duration-${index}">--:--</span>
+              </div>
+              <div class="player-controls">
+                <button class="play-pause" data-index="${index}">⏵</button>
+                <div class="progress-container" data-index="${index}">
+                  <div class="progress-bar" id="progress-${index}"></div>
+                </div>
+              </div>
+              <audio id="${playerId}" src="${podcast.src}"></audio>
+              <div class="player-credit">${podcast.credit || '🎙️ Un podcast par Pixel Pedagogy'}</div>
+            </div>
+          `;
+          container.insertAdjacentHTML('beforeend', html);
+        });
+      
+        podcasts.forEach((_, index) => {
+          const audio = document.getElementById(`audio-${index}`);
+          const playBtn = document.querySelector(`.play-pause[data-index="${index}"]`);
+          const progressBar = document.getElementById(`progress-${index}`);
+          const progressContainer = document.querySelector(`.progress-container[data-index="${index}"]`);
+          const currentEl = document.getElementById(`current-${index}`);
+          const durationEl = document.getElementById(`duration-${index}`);
+          let isPlaying = false;
+      
+          playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+              audio.pause();
+              playBtn.textContent = '⏵';
+            } else {
+              // Pause les autres audios
+              document.querySelectorAll('audio').forEach(a => {
+                if (a !== audio) a.pause();
+              });
+              document.querySelectorAll('.play-pause').forEach(b => {
+                if (b !== playBtn) b.textContent = '⏵';
+              });
+      
+              audio.play();
+              playBtn.textContent = '⏸';
+            }
+            isPlaying = !isPlaying;
+          });
+      
+          audio.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audio.duration);
+          });
+      
+          audio.addEventListener('timeupdate', () => {
+            currentEl.textContent = formatTime(audio.currentTime);
+            const progressPercent = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+          });
+      
+          progressContainer.addEventListener('click', (e) => {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            audio.currentTime = (clickX / width) * duration;
+          });
+      
+          function formatTime(sec) {
+            const minutes = Math.floor(sec / 60);
+            const seconds = Math.floor(sec % 60).toString().padStart(2, '0');
+            return `${minutes}:${seconds}`;
+          }
+        });
+      </script>
+      
+</body>
+</html>
