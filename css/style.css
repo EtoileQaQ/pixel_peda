@@ -451,6 +451,15 @@ body.dark-mode .valeurs-section {
   align-items: start;
 }
 
+.liste-valeurs li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.1rem;
+  max-width: 160px;
+  text-align: center;
+}
+
 .valeur-item {
   text-align: center;
   opacity: 0;
@@ -482,15 +491,13 @@ body.dark-mode .valeurs-section {
   }
 }
 
+@media (max-width: 768px) {
+  .liste-valeurs {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+}
 
-/*.liste-valeurs li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.1rem;
-  max-width: 160px;
-  text-align: center;
-}*/
 
 /* Section Qui suis-je */
 
