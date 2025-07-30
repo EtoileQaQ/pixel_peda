@@ -166,41 +166,6 @@ body.home-page .nav-links li a {
   }
 }
 
-.theme-toggle {
-  margin-left: 20px;
-  display: flex;
-  align-items: center;
-}
-.theme-toggle input {
-  display: none;
-}
-.theme-toggle .slider {
-  width: 50px;
-  height: 25px;
-  background-color: #ccc;
-  border-radius: 25px;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.theme-toggle .slider::before {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: white;
-  border-radius: 50%;
-  top: 2.5px;
-  left: 2.5px;
-  transition: transform 0.3s;
-}
-.theme-toggle input:checked + .slider {
-  background-color: #333;
-}
-.theme-toggle input:checked + .slider::before {
-  transform: translateX(25px);
-}
-
 .slider {
     position: relative;
     overflow: hidden;
@@ -518,14 +483,14 @@ body.dark-mode .valeurs-section {
 }
 
 
-.liste-valeurs li {
+/*.liste-valeurs li {
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 1.1rem;
   max-width: 160px;
   text-align: center;
-}
+}*/
 
 /* Section Qui suis-je */
 
