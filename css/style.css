@@ -421,8 +421,7 @@ body.home-page .nav-links li a {
 /* Section Valeurs */
 
 .valeur-section {
-  background-color: pink;
-  /*background-color: #72c9b6;*/
+  background-color: #72c9b6;
   color: #FAFAFA;
   padding: 4rem 2rem;
   transition: background-color 0.3s, color 0.3s;
