@@ -38,7 +38,6 @@ body {
 
 main {
 flex: 1;
-
 }
 
 header {
@@ -53,17 +52,17 @@ header {
   padding: 1rem 0;
   z-index: 100;
   color: #646464;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
 }
 
 .header-logo {
-margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .header-logo img {
-height: 120px;
-width: auto;
-max-width: 200px;
+  height: 120px;
+  width: auto;
+  max-width: 200px;
 }
 
 header ul {
@@ -92,21 +91,20 @@ header ul li a {
   font-size: 1rem;
   letter-spacing: 0.05em;
   transition: border-bottom 0.3s ease;
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 0.5px;
+  display: inline-block;
 }
 
 body.home-page .nav-links li a {
-color: #FAFAFA;
-font-weight: 300;
-font-size: 1.20rem;
-letter-spacing: 0.05em;
-transition: border-bottom 0.3s ease;
-border-bottom: 1px solid transparent;
-text-decoration: none;
+  color: #FAFAFA;
+  font-weight: 300;
+  font-size: 1.20rem;
+  letter-spacing: 0.05em;
 }
 
 .nav-links li a:hover {
-  border-bottom: 1px solid #72c9b6;
+  border-bottom: 2px solid #72c9b6;
 }
 
 .burger {
@@ -509,7 +507,7 @@ flex-wrap: wrap;
 
 .valeur-section {
 background-color: #72c9b6;
-color: #FAFAFA;
+color: #216083;
 padding: 4rem 2rem;
 transition: background-color 0.3s, color 0.3s;
 justify-items: center;
@@ -518,6 +516,7 @@ justify-items: center;
 .valeurs-section h2 {
 font-size: 2.5rem;
 margin-bottom: 3rem;
+color: #216083;
 }
 
 .liste-valeurs {
@@ -531,6 +530,10 @@ padding: 0;
 margin-top: 15px;
 justify-items: center;
 align-items: start;
+}
+
+.valeur-item span {
+  color: #216083;
 }
 
 .liste-valeurs li {
@@ -555,16 +558,14 @@ animation: slideUp 0.8s ease-out forwards;
 .valeur-item:nth-child(4) { animation-delay: 0.3s; }
 
 .valeur-item img {
-width: 60px;
-height: 60px;
-margin-bottom: 1rem;
-filter: grayscale(100%);
-transition: filter 0.3s;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+  filter: brightness(0) saturate(100%) invert(22%) sepia(45%) saturate(1234%) hue-rotate(157deg) brightness(91%) contrast(92%);
+  transition: transform 0.3s ease;
 }
 
-.valeur-item:hover img {
-filter: none;
-}
+
 
 @keyframes slideUp {
 to {
@@ -574,10 +575,17 @@ to {
 }
 
 @media (max-width: 768px) {
-.liste-valeurs {
-  display: flex !important;
-  flex-direction: column !important;
-}
+  .liste-valeurs {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2rem;
+    max-width: 400px;
+  }
+  
+  .liste-valeurs li:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
 }
 
 
@@ -829,11 +837,6 @@ height: 4px;
 background-color: #216083;
 }
 
-.references {
-padding: 60px 20px;
-text-align: center;
-}
-
 /* Section Ils m'ont fait confiance */
 
 .references {
@@ -850,11 +853,11 @@ text-align: center;
 
 .logo-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(6, 1fr); /* 6 colonnes pour 6 logos */
   gap: 40px;
   align-items: center;
   justify-items: center;
-  max-width: 1400px;
+  max-width: 1400px; /* Plus large pour laisser de la place */
   margin: 0 auto;
 }
 
@@ -863,12 +866,12 @@ text-align: center;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 140px;
+  height: 140px; /* Hauteur fixe pour uniformiser */
 }
 
 .logo-grid a img {
   max-width: 100%;
-  max-height: 120px;
+  max-height: 120px; /* Logos bien visibles */
   height: auto;
   width: auto;
   object-fit: contain;
@@ -882,16 +885,16 @@ text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-
+/* Version responsive pour petits écrans */
 @media (max-width: 1200px) {
   .logo-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes sur tablette */
   }
 }
 
 @media (max-width: 768px) {
   .logo-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur mobile */
     gap: 30px;
   }
 }
